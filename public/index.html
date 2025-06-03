@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบ นักเรียน</title>
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="/index.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div style="width: 70%;padding: 0 20px;padding-top: 15px;">
+            
+            <div class="d-flex justify-content-center align-items-center w-100">
+                <img src="/logo560220051631244952.png" alt="logo fkw" width="40">
+                <h3>โรงเรียนฝายกวางวิทยาคม</h3>
+            </div>
+            <div class="p-1"></div>
+            <img id="video">
+            <div class="p-1"></div>
+            <div>
+                <span id="timeg"></span>
+            </div>
+        </div>
+        <div style="width: 30%;height: 100vh;background-color: rgb(99, 116, 71);overflow:auto">
+            <div id="echousertofkw"></div>
+        </div>
+    </main>
+  
+    
+  
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/index.js"></script>
+</body>
+</html>
