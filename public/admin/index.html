@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Manage AI systems</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn">
+        <button id="mobile-toggle" class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h2>Admin Dashboard</h2>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link" data-page="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#students" class="nav-link" data-page="students">
+                        <i class="fas fa-users"></i>
+                        <span>Students</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#attendance" class="nav-link" data-page="attendance">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#password" class="nav-link" data-page="password">
+                        <i class="fas fa-lock"></i>
+                        <span>Password</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#logout" class="nav-link" data-page="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, Admin!</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>จำนวนนักเรียน</h3>
+                            <p class="stat-number" id="total-students">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>นักเรียนมาโรงเรียนวันนี้</h3>
+                            <p class="stat-number" id="present-today">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>วันที่</h3>
+                            <p class="stat-number" id="current-date"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CCTV Feed -->
+                <div class="cctv-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-video"></i> Live CCTV Feed</h2>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="cctv-container">
+                        <div class="cctv-feed">
+                            <img id="Icctv-overlay">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Page -->
+            <div id="students-page" class="page">
+                <div class="page-header">
+                    <h1>Student Management</h1>
+                    <button class="btn btn-primary" id="add-student-btn">
+                        <i class="fas fa-plus"></i> Add Student
+                    </button>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="student-search" placeholder="Search students by name, id, room">
+                    </div>
+                </div>
+
+                <div class="students-list">
+                    <div class="students-list-header">
+                        <h2 id="students-listH">Students ()</h2>
+                    </div>
+                    <div id="students-list"></div>
+                </div>
+            </div>
+
+            <!-- Attendance Page -->
+            <div id="attendance-page" class="page">
+                <div class="page-header">
+                    <h1>Student Attendance</h1>
+                    <div class="date-picker">
+                        <i class="fas fa-calendar"></i>
+                        <input type="date" id="attendance-date">
+                    </div>
+                </div>
+
+                <div class="attendance-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>นักเรียนทั้งหมด</h3>
+                            <p class="stat-number" id="attendance-total">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>มาโรงเรียน</h3>
+                            <p class="stat-number" id="attendance-present">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>ไม่มาโรงเรียน</h3>
+                            <p class="stat-number" id="attendance-absent">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attendance-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="attendance-search" placeholder="Search students by name, id, room">
+                    </div>
+                    <button class="btn btn-success" id="mark-all-present" style="max-width:150px">คนที่มาแล้ว✔️</button>
+                    <button class="btn btn-danger" id="mark-all-absent" style="max-width:150px">คนที่ไม่มา</button>
+                </div>
+
+                <div class="attendance-list">
+                    <div class="students-list-header">
+                        <h2 id="attendance-list-h">Attendance for</h2>
+                    </div>
+                    <div id="attendance-list"></div>
+                </div>
+            </div>
+
+            <!-- Password Page -->
+            <div id="password-page" class="page">
+                <div class="password-container">
+                    <div class="password-header">
+                        <div class="password-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h1>Change Password</h1>
+                        <p>Update your account password securely</p>
+                    </div>
+
+                    <form class="password-form" id="password-form">
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <div class="password-input">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="current-password" placeholder="Enter current password" required>
+                                <button type="button" class="toggle-password" data-target="current-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new-password">New Password</label>
+                            <div class="password-input">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="new-password" placeholder="Enter new password" required>
+                                <button type="button" class="toggle-password" data-target="new-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength" id="password-strength"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm New Password</label>
+                            <div class="password-input">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirm-password" placeholder="Confirm new password" required>
+                                <button type="button" class="toggle-password" data-target="confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="password-requirements">
+                            <h4>Password Requirements:</h4>
+                            <ul>
+                                <li>At least 8 characters long</li>
+                                <li>Include uppercase and lowercase letters</li>
+                                <li>Include numbers and special characters</li>
+                                <li>Avoid using personal information</li>
+                            </ul>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit Student -->
+    <div id="student-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add Student</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="student-form">
+                <div class="form-group">
+                    <div class="d-flex justify-content-center">
+                        <div class="fdffffffs align-items-center">
+                            <img id="student-img" alt="ไม่พบรูปภาพ">
+                            <div style="padding: 5px;">
+                                <button type="button" class="btn btn-success" id="student-upload-b">เปลียนรูป</button>
+                                <button type="button" class="btn btn-danger" id="student-upload-bs" style="display: none;">ลบ</button>
+                                <div class="d-none">
+                                    <input type="file" id="student-upload" accept="image/*" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="student-phone">ID Student</label>
+                    <input class="form-control" type="number" id="student-id">
+
+                </div>
+                <div class="form-group">
+                    <label for="student-name">Full Name</label>
+                    <input class="form-control" type="text" id="student-name" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="student-email">Room</label>
+                    <div class="d-flex align-items-center">
+                        <select class="selectadd" id="student-room1">
+                            <option value="not">เลือก ม.</option>
+                            <option value="1">ม.1</option>
+                            <option value="2">ม.2</option>
+                            <option value="3">ม.3</option>
+                            <option value="4">ม.4</option>
+                            <option value="5">ม.5</option>
+                            <option value="6">ม.6</option>
+                        </select>
+                        <div style="margin: 5px;">/</div>
+                        <select class="selectadd" id="student-room2">
+                            <option value="not">เลือก ห้อง</option>
+                            <option value="1">ห้อง 1</option>
+                            <option value="2">ห้อง 2</option>
+                            <option value="3">ห้อง 3</option>
+                            <option value="4">ห้อง 4</option>
+                        </select>
+                    </div>
+                </div>
+                
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div style="padding-top:  100px"></div>
+
+    <div id="spinb" class="fixed-top d-none justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="sweetalert.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
